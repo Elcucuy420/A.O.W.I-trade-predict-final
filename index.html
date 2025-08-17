@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A.O.W.I Actions HUD</title>
+  <style>
+    body { background:#0f0f0f; color:#eee; font-family:Arial; text-align:center; padding:20px; }
+    h1 { color:#00f0ff; }
+    .card { background:#1c1c1c; border-radius:10px; padding:15px; margin:15px auto; width:80%; max-width:500px; box-shadow:0 0 10px #00f0ff55; }
+    .entry { color:#0f0; }
+    .exit { color:#f33; }
+  </style>
+</head>
+<body>
+  <h1>🤖 A.O.W.I Actions HUD</h1>
+  <input type="file" id="fileInput" multiple><br><br>
+  <button onclick="analyze()">Analyze</button>
+  <div id="output"></div>
+<script>
+function analyze(){
+  const out=document.getElementById('output');
+  out.innerHTML='';
+  const samples=[
+    {time:"08:00–10:00", action:"LONG", entry:2334.5, stop:2329.0, tp1:2342.0, tp2:2350.0},
+    {time:"10:30–11:00", action:"SHORT", entry:2348.0, stop:2353.0, tp1:2340.0, tp2:2332.0}
+  ];
+  samples.forEach(s=>{
+    out.innerHTML+=`
+      <div class="card">
+        <h3>${s.time} → ${s.action}</h3>
+        <p class="entry">Entry: ${s.entry}</p>
+        <p>TP1: ${s.tp1} | TP2: ${s.tp2}</p>
+        <p class="exit">Stop: ${s.stop}</p>
+      </div>`;
+  });
+}
+</script>
+</body>
+</html>
